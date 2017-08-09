@@ -1,0 +1,13 @@
+@import "../node_modules/shoelace-css/dist/shoelace.css";
+@import "scss/variables";
+@import "scss/global";
+
+a {
+  cursor: pointer;
+  color: $color-secondary;
+
+  &:visited {
+    color: $color-secondary;
+  }
+}
+

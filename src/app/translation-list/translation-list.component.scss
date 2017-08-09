@@ -1,0 +1,20 @@
+:host {
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      white-space: nowrap;
+    }
+  }
+
+  a {
+    &.selected {
+      font-weight: bold;
+    }
+
+    &.translated {
+      opacity: 0.3;
+    }
+  }
+}

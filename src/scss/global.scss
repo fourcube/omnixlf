@@ -1,0 +1,37 @@
+body {
+  margin: 0 0;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+@import '../node_modules/humane-js/themes/flatty.css';
+@import '../node_modules/vex-js/dist/css/vex.css';
+@import '../node_modules/vex-js/dist/css/vex-theme-os.css';
+
+.humane {
+  bottom: 0;
+  top: auto;
+
+  background: $color-success;
+  color: $color-white;
+}
+
+.header {
+  position: fixed;
+  background: $color-white;
+  top: 0;
+  width: 100%;
+  border-bottom: 1px solid $color-secondary;
+  padding: 0.5rem;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  + * {
+    margin-top: 40px;
+  }
+}

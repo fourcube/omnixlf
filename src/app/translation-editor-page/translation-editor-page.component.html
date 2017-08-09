@@ -1,0 +1,43 @@
+<header class="header">
+  <div class="actions">
+    <button class="button-inverse" (click)="back()">< Back</button>
+    <button [disabled]="!hasUnsavedChanges" [class.button-link]="!hasUnsavedChanges" class="save" (click)="saveFile()">Save</button>
+  </div>
+  <span class="current-filename">{{file.filename}}</span>
+</header>
+<main>
+  <div class="panel" id="side-panel">
+    <app-translation-list [translationUnits]="translationUnits" (translationUnitSelected)="editTranslationUnit($event)"></app-translation-list>
+  </div>
+  <div class="panel" id="main">
+    <div class="translation-form" *ngIf="translationUnit">
+      <h5>ID</h5>
+      <p>{{translationUnit.id}}</p>
+      <h5>Context</h5>
+      <p>{{translationUnit.context}}</p>
+      <h5>Hint</h5>
+      <p>{{translationUnit.hint}}</p>
+
+      <hr>
+
+      <form [formGroup]="translationForm" (ngSubmit)="onSubmit()" novalidate>
+        <div class="input-single">
+          <label>Source</label>
+          <textarea readonly="true">{{translationUnit.source}}</textarea>
+        </div>
+
+        <div class="input-single">
+          <label>Translation</label>
+          <textarea formControlName="target"></textarea>
+        </div>
+
+        <button [disabled]="!translationForm.value.target" type="submit" class="button-success">Save</button>
+        <button
+          (click)="onUseSource()"
+          *ngIf="translationForm.value.target !== translationUnit.source"
+          type="button"
+          class="button-inverse">Use Source</button>
+      </form>
+    </div>
+  </div>
+</main>

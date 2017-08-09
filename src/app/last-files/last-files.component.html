@@ -1,0 +1,10 @@
+<div *ngIf="hasLastFiles | async">
+  <h3>Last files</h3>
+
+  <button (click)="clearList()" class="button-small">Clear</button>
+  <ul>
+    <li *ngFor="let file of (files$ | async)">
+      <a (click)="editFile(file)">{{file.path}}</a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,19 @@
+:host {
+  display: block;
+
+  .actions {
+    flex-basis: 80%;
+  }
+
+  main {
+    padding: 1rem;
+
+    .quickstart {
+      margin-top: 2rem;
+    }
+
+    app-last-files {
+      margin-top: 2rem;
+    }
+  }
+}

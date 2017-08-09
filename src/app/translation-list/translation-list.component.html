@@ -1,0 +1,10 @@
+<div class="translation-unit-group"  *ngFor="let group of groupedTranslationUnits">
+  <h3 *ngIf="group.context">{{group.context}}</h3>
+  <ul>
+    <li *ngFor="let tu of group.translationUnits">
+      <a (click)="selectTranslationUnit(tu)" [class.selected]="isSelected(tu)" [class.translated]="tu.target.$.state != 'new'">
+      <span>{{tu.id}}</span>
+      </a>
+    </li>
+  </ul>
+</div>

@@ -1,0 +1,57 @@
+@import "lib";
+
+:host {
+  overflow: hidden;
+  display: block;
+  height: 100%;
+
+  .header {
+    .actions {
+      flex-basis: 80%;
+
+      .save {
+      }
+    }
+    .current-filename {
+      justify-self: flex-end;
+    }
+  }
+
+  main {
+    overflow: hidden;
+    display: block;
+    height: 100%;
+
+    .panel {
+      float: left;
+      height: 100%;
+
+      padding: 1rem 1rem;
+
+
+      &#side-panel {
+        overflow: scroll;
+      }
+    }
+
+    h5 {
+      color: #999;
+
+      + p {
+        margin-left: 1rem;
+      }
+    }
+
+    ::ng-deep {
+      .gutter {
+        height: 100%;
+        float: left;
+        display: block;
+        cursor: move;
+
+        border-right: 1px solid $color-secondary;
+
+      }
+    }
+  }
+}
