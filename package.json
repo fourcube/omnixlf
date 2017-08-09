@@ -3,7 +3,7 @@
   "productName": "OmniXLF",
   "version": "0.0.0",
   "license": "MIT",
-  "main": "electron-src/main-dev.js",
+  "main": "src-electron/main-dev.js",
   "scripts": {
     "ng": "ng",
     "start": "concurrently -r 'ng serve' 'electron .'",

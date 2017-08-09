@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+const shell = (window as any).require('electron').shell;
 
 @Component({
   selector: 'app-about-page',
@@ -12,4 +13,8 @@ export class AboutPageComponent implements OnInit {
   ngOnInit() {
   }
 
+  openLink($event, url) {
+    $event.preventDefault();
+    shell.openExternal(url);
+  }
 }
