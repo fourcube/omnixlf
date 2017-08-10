@@ -17,7 +17,14 @@ body {
 
   background: $color-success;
   color: $color-white;
+
+  &.humane-error {
+    background: $color-primary;
+    color: $color-white;
+  }
 }
+
+
 
 .header {
   position: fixed;

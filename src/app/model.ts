@@ -26,11 +26,11 @@ export class OmnixlfFileWithData extends OmnixlfFile {
           return reject(err);
         }
 
-        this.data = data;
         console.log(data);
+
+        this.data = data;
         resolve();
       });
-
     });
 
     return result;

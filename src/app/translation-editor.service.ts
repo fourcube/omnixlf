@@ -59,7 +59,16 @@ export class TranslationEditorService {
    * @param filePath filepath to load
    */
   load(filePath: string) {
-    const data = fs.readFileSync(filePath);
+    let data;
+
+    try {
+      data = fs.readFileSync(filePath);
+    } catch (e) {
+      humane.log('Failed to open file.', {addnCls: 'humane-error'});
+      this.loadingService.done();
+      return Observable.throw('failed to open file');
+    }
+
     const file = new OmnixlfFileWithData();
 
     file.path = filePath;
@@ -67,6 +76,11 @@ export class TranslationEditorService {
     file.xml = data;
 
     return Observable.fromPromise(file.parse())
+      .catch((error) => {
+        humane.log('Failed to parse XLF file.', {addnCls: 'humane-error'});
+        this.loadingService.done();
+        return Observable.throw('failed to parse file');
+      })
       .flatMap(() => {
         this._file.next(file);
         this.unsavedChanges = false;
@@ -94,7 +108,7 @@ export class TranslationEditorService {
       humane.log('File saved.');
       this.unsavedChanges = false;
     } catch (e) {
-      humane.error('Failed to save changes!');
+      humane.error('Failed to save changes.', {addnCls: 'humane-error'});
     } finally {
       this.loadingService.done();
     }
