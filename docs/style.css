@@ -1,0 +1,74 @@
+:root {
+  --color-primary: #ff4800;
+  --color-grey: #aeaeae;
+}
+
+body {
+  display: block;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+main {
+  margin: 20px;
+  text-align: center;
+  display: grid;
+  grid-template-columns: 12rem calc(100% - 12rem);
+  grid-gap: 10px;
+}
+
+footer {
+  margin-top: 60px;
+  padding: 2rem;
+  border-top: 1px solid var(--color-grey);
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.support,
+.download,
+.description,
+.demo,
+.hero {
+  grid-column: 1 / -1;
+}
+
+.support,
+.demo,
+.download,
+.description {
+  margin-top: 40px;
+}
+
+.demo img {
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+@media (max-width: 560px) {
+  .demo img {
+    max-width: 100%;
+  }
+
+  .download,
+  .description {
+    margin-top: 40px;
+  }
+
+  .demo {
+    margin-top: 0;
+  }
+
+  footer {
+    display: block;
+  }
+}
+
+.copy--small {
+  margin-bottom: 10px;
+  font-size: 12px;
+}
