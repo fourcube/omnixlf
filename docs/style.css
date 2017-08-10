@@ -16,8 +16,11 @@ main {
   margin: 20px;
   text-align: center;
   display: grid;
-  grid-template-columns: 12rem calc(100% - 12rem);
   grid-gap: 10px;
+  grid-auto-columns: 12.5%;
+  column-count: 8;
+
+  justify-content: center;
 }
 
 footer {
@@ -30,11 +33,23 @@ footer {
 }
 
 .support,
-.download,
 .description,
 .demo,
 .hero {
-  grid-column: 1 / -1;
+  grid-column-start: 1;
+  grid-column-end: 8;
+
+}
+
+.download {
+  grid-column-start: 2;
+  grid-column-end: 7;
+}
+
+.download .instructions {
+  margin-top: 20px;
+  padding: 0;
+  text-align: left;
 }
 
 .support,
@@ -57,6 +72,15 @@ footer {
   .download,
   .description {
     margin-top: 40px;
+  }
+
+  .download {
+    grid-column-start: 1;
+    grid-column-end: 8;
+  }
+
+  .download .instructions {
+    padding: 0 1rem ;
   }
 
   .demo {
