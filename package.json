@@ -8,7 +8,7 @@
     "ng": "ng",
     "start": "concurrently -r 'ng serve' 'electron .'",
     "start:release": "electron ./dist",
-    "build:electron": "ng build --base-href ./ && cp electron-src/* dist/ && rm -rf packages && npm run package:osx && npm run package:windows",
+    "build:electron": "ng build --base-href ./ && cp src-electron/* dist/ && rm -rf packages && npm run package:osx && npm run package:windows",
     "package:osx": "electron-packager ./dist --platform=darwin --out=packages",
     "package:windows": "electron-packager ./dist --platform=win32 --arch=ia32 --out=packages",
     "build": "ng build",
