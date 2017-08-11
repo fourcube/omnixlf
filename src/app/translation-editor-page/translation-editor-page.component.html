@@ -1,6 +1,7 @@
 <header class="header">
   <div class="actions">
     <button class="button-inverse" (click)="back()">< Back</button>
+    <button [disabled]="!(hasUntranslatedStrings | async)" [class.button-link]="!(hasUntranslatedStrings | async)" class="save" (click)="applySourceToUntranslatedStrings()">Use Source as Translation</button>
     <button [disabled]="!hasUnsavedChanges" [class.button-link]="!hasUnsavedChanges" class="save" (click)="saveFile()">Save</button>
   </div>
   <span class="current-filename">{{file.filename}}</span>

@@ -103,6 +103,14 @@ export class TranslationEditorPageComponent implements OnInit, AfterViewInit, On
     return this.translationEditorService.hasUnsavedChanges;
   }
 
+  public get hasUntranslatedStrings() {
+    return this.translationEditorService.file$.map(f => f.hasUntranslatedStrings);
+  }
+
+  public applySourceToUntranslatedStrings() {
+    this.translationEditorService.applySourceToUntranslatedStrings();
+  }
+
   back() {
     if (this.translationEditorService.hasUnsavedChanges) {
       vex.dialog.confirm({

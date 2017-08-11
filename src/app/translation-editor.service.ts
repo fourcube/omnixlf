@@ -1,6 +1,6 @@
 import { LastFilesService } from './last-files.service';
 import { LoadingService } from './loading.service';
-import { OmnixlfFileWithData } from './model';
+import { OmnixlfFileWithData, TranslationUnit } from './model';
 import { BehaviorSubject, Observable, Subject } from 'rxjs/Rx';
 import { Injectable, NgZone } from '@angular/core';
 
@@ -112,8 +112,32 @@ export class TranslationEditorService {
     } finally {
       this.loadingService.done();
     }
+  }
 
+  applySourceToUntranslatedStrings() {
+    const file = this._file.getValue();
+    let changes = false;
 
+    file.getTranslationUnits()
+      .filter((u: TranslationUnit) => u.target._.trim() === '')
+      .forEach((u: TranslationUnit) => {
+        let translation = u.target;
+        changes = true;
+
+        if (typeof u.source  === 'object') {
+          translation = u.source;
+          translation.$ = {};
+        } else {
+          translation._ = u.source;
+        }
+
+        file.updateTranslation(u.id, translation);
+      });
+
+    if (changes) {
+      this.unsavedChanges = true;
+    }
+    this._file.next(file);
   }
 
 }

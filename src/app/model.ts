@@ -10,7 +10,7 @@ export interface TranslationUnit {
   id: string;
   hint?: string;
   context?: string;
-  source: string;
+  source: any;
   target?: any;
 }
 
@@ -25,8 +25,6 @@ export class OmnixlfFileWithData extends OmnixlfFile {
         if (err) {
           return reject(err);
         }
-
-        console.log(data);
 
         this.data = data;
         resolve();
@@ -67,6 +65,14 @@ export class OmnixlfFileWithData extends OmnixlfFile {
     return transUnits.map(this._mapXliffTransUnitToTranslationUnit);
   }
 
+  get hasUntranslatedStrings(): boolean {
+    const translationUnits = this.getTranslationUnits();
+
+    return translationUnits.some((u) => {
+      return (typeof u.target._ !== 'object') && (u.target._.trim() === '');
+    });
+  }
+
   updateTranslation (id: string, translation) {
     const units = this.getRawTranslationUnits();
 
@@ -86,7 +92,7 @@ export class OmnixlfFileWithData extends OmnixlfFile {
     let hint = note.length > 0 ? note[0] : '';
     let context = note.length > 1 ? note[1] : '';
     let target = transUnit.target[0];
-    const source = transUnit.source[0];
+    let source = transUnit.source[0];
 
     if (target) {
       target.$ = target.$ || '';
@@ -98,6 +104,13 @@ export class OmnixlfFileWithData extends OmnixlfFile {
         },
         _: ''
       };
+    }
+
+    // it can happen that the source is actually a nested structure,
+    // that contains html elements. We'll try to pick the text and ignore the rest.
+    if (typeof source === 'object') {
+      console.warn('source of', transUnit, 'is actually an object, trying to use the text');
+      source = source._ || '';
     }
 
     hint = hint ? hint._ : '';
