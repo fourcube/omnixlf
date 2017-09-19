@@ -1,4 +1,4 @@
-const {app, ipcMain} = require('electron');
+const { app, ipcMain } = require('electron');
 
 function createMenuTemplate(window) {
   const template = [
@@ -25,9 +25,21 @@ function createMenuTemplate(window) {
     {
       label: 'View',
       submenu: [
-        {role: 'togglefullscreen'}
+        { role: 'togglefullscreen' }
       ]
     },
+    {
+      label: "Edit",
+      submenu: [
+        { label: "Undo", accelerator: "CmdOrCtrl+Z", selector: "undo:" },
+        { label: "Redo", accelerator: "Shift+CmdOrCtrl+Z", selector: "redo:" },
+        { type: "separator" },
+        { label: "Cut", accelerator: "CmdOrCtrl+X", selector: "cut:" },
+        { label: "Copy", accelerator: "CmdOrCtrl+C", selector: "copy:" },
+        { label: "Paste", accelerator: "CmdOrCtrl+V", selector: "paste:" },
+        { label: "Select All", accelerator: "CmdOrCtrl+A", selector: "selectAll:" }
+      ]
+    }
   ];
 
   if (process.platform === 'darwin') {
@@ -40,14 +52,14 @@ function createMenuTemplate(window) {
             window.send('about', {});
           }
         },
-        {type: 'separator'},
-        {role: 'services', submenu: []},
-        {type: 'separator'},
-        {role: 'hide'},
-        {role: 'hideothers'},
-        {role: 'unhide'},
-        {type: 'separator'},
-        {role: 'quit'}
+        { type: 'separator' },
+        { role: 'services', submenu: [] },
+        { type: 'separator' },
+        { role: 'hide' },
+        { role: 'hideothers' },
+        { role: 'unhide' },
+        { type: 'separator' },
+        { role: 'quit' }
       ]
     })
   };
