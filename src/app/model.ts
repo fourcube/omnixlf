@@ -91,7 +91,7 @@ export class OmnixlfFileWithData extends OmnixlfFile {
     const note = transUnit.note || [];
     let hint = note.length > 0 ? note[0] : '';
     let context = note.length > 1 ? note[1] : '';
-    let target = transUnit.target[0];
+    let target = (transUnit.target || [])[0];
     let source = transUnit.source[0];
 
     if (target) {
