@@ -94,7 +94,12 @@ export class OmnixlfFileWithData extends OmnixlfFile {
     let target = (transUnit.target || [])[0];
     let source = transUnit.source[0];
 
-    if (target) {
+    if (typeof target === 'string') {
+      target = {
+        $: {},
+        _: target
+      };
+    } else if (target) {
       target.$ = target.$ || '';
       target._ = target._ || '';
     } else {
