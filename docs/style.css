@@ -1,5 +1,6 @@
 :root {
   --color-primary: #ff4800;
+  --color-alert: #ff0000;
   --color-grey: #aeaeae;
 }
 
@@ -95,4 +96,14 @@ footer {
 .copy--small {
   margin-bottom: 10px;
   font-size: 12px;
+}
+
+.banner {
+  padding: 10px 5px;
+  position: relative;
+  top: 0;
+  height: auto;
+  width: 100vw;
+  background-color: var(--color-alert);
+  color: white;
 }
