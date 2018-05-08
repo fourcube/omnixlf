@@ -84,6 +84,11 @@ export class OmnixlfFileWithData extends OmnixlfFile {
     }
 
     translation.$.state = 'translated';
+
+    if (typeof unit.target === 'undefined') {
+      unit.target = [];
+    }
+
     unit.target[0] = translation;
   }
 
